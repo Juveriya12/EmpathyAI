@@ -1,0 +1,267 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 325 100% 98%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 325 98% 63%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 325 98% 63%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 325 30% 10%;
+    --foreground: 240 10% 98%;
+
+    --card: 240 10% 15%;
+    --card-foreground: 240 10% 98%;
+
+    --popover: 240 10% 15%;
+    --popover-foreground: 240 10% 98%;
+
+    --primary: 325 70% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 20%;
+    --secondary-foreground: 240 10% 98%;
+
+    --muted: 240 5% 20%;
+    --muted-foreground: 240 10% 70%;
+
+    --accent: 240 5% 20%;
+    --accent-foreground: 240 10% 98%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5% 20%;
+    --input: 240 5% 20%;
+    --ring: 325 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .glass-effect {
+    @apply bg-white/20 backdrop-blur-lg;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-effect-dark {
+    @apply bg-black/10 backdrop-blur-lg;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .chat-container {
+    background-image: linear-gradient(to bottom, theme('colors.chat.bg-gradient-start'), theme('colors.chat.bg-gradient-end'));
+  }
+
+  .dark .chat-container {
+    background-image: linear-gradient(to bottom, theme('colors.chat.bg-gradient-start-dark'), theme('colors.chat.bg-gradient-end-dark'));
+  }
+
+  .typing-indicator {
+    @apply inline-flex items-center;
+  }
+
+  .typing-indicator::after {
+    content: '';
+    @apply w-4;
+    animation: typing 1.5s infinite;
+  }
+
+  @keyframes typing {
+    0% {
+      content: '';
+    }
+
+    25% {
+      content: '.';
+    }
+
+    50% {
+      content: '..';
+    }
+
+    75% {
+      content: '...';
+    }
+  }
+
+  .message-transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .avatar-glow {
+    box-shadow: 0 0 15px theme('colors.chat.pink');
+  }
+
+  .dark .avatar-glow {
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+  }
+
+  .chat-input-container {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .chat-input-container {
+    background-color: rgba(30, 30, 40, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .chat-input {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(236, 236, 236, 0.7);
+  }
+
+  .dark .chat-input {
+    background-color: rgba(40, 40, 50, 0.7);
+    border: 1px solid rgba(60, 60, 70, 0.7);
+  }
+
+  .chat-button {
+    transition: all 0.2s ease;
+  }
+
+  .chat-button:active {
+    transform: scale(0.95);
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+
+    50% {
+      transform: scale(1.05);
+      opacity: 0.3;
+    }
+
+    100% {
+      transform: scale(0.95);
+      opacity: 0.5;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-animation 5s ease infinite;
+  }
+
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .mic-button::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 60, 189, 0.5), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .mic-button:hover::before {
+    opacity: 1;
+  }
+
+  .explore-button {
+    @apply inline-flex items-center bg-white/70 backdrop-blur px-3 py-1 rounded-full text-xs font-medium text-gray-700 gap-1 shadow-sm;
+    transition: all 0.2s ease;
+  }
+
+  .explore-button:hover {
+    @apply bg-white/90;
+  }
+
+  .dark .explore-button {
+    @apply bg-gray-800/70 text-gray-200;
+  }
+
+  .dark .explore-button:hover {
+    @apply bg-gray-800/90;
+  }
+
+  .message-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .message-image:hover {
+    transform: scale(1.02);
+  }
+
+  .mood-tracker-dot {
+    @apply transition-all duration-300 ease-in-out;
+  }
+
+  .mood-tracker-dot:hover {
+    transform: scale(1.2);
+  }
+}
