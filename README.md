@@ -75,6 +75,9 @@ pip install -r requirements.txt
 # Create necessary directories
 mkdir models
 
+# Create .env in root directory of /backend, it must have 
+GROQ_API_KEY="--Your API Key--"
+
 # Run the backend server
 uvicorn main:app --reload
 ```
@@ -88,6 +91,9 @@ cd ../frontend
 
 # Install dependencies
 npm install
+
+# Create .env in root directory of /frontend, it must have 
+VITE_BACKEND_URL=http://localhost:8000/chat
 
 # Run the frontend application
 npm run dev
